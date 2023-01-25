@@ -1,0 +1,93 @@
+<style>
+  body {
+    font-family: initial;
+    font-size: 16px;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  a {
+    margin-right: 20px;
+    color: aliceblue;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #4205fb;
+    color: rgb(246, 246, 246);
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo {
+    height: 40px;
+    margin: 0 16px;
+  }
+
+  .toolbar #twitter-logo:hover {
+    opacity: 0.8;
+  }
+
+  .fa fa-shopping-cart {
+    font-size: 50px;
+    margin: 10px;
+  }
+</style>
+
+<div class="toolbar" role="banner">
+ 
+<i class="fa fa-shopping-cart" style="margin-left: 40px;"></i>
+  <button mat-button [matMenuTriggerFor]="menu">Menu <i class="fas fa-caret-down"></i></button>
+  <span [routerLink]="['/dashboard']" style="margin-left: 310px;font-size: 40px;">
+    <font color="#FFD523">Welcome</font>
+    <font color="#4205fb">-</font>
+    <font color="#FF9966">to</font>
+    <font color="#4205fb">-</font>
+    <font color="#FF2626">G</font>
+    <font color="#252A34">r</font>
+    <font color="#753422">o</font>
+    <font color="#FFD523">c</font>
+    <font color="#71EFA3">e</font>
+    <font color="#0F52BA">r</font>
+    <font color="#66CC66">y</font>
+    <font color="#4205fb">-</font>
+    <font color="#FF9966">M</font>
+    <font color="#FFCCCC">a</font>
+    <font color="#00C1D4">r</font>
+    <font color="#EFE3D0">t</font>
+ </span>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let cat of categories"
+      [routerLink]="['/dsiplay-category/', cat.id]">{{cat.name}}</button>
+  </mat-menu>
+
+  <div class="spacer"></div>
+  <a type="button" [routerLink]="['/aboutUs']">
+    About Us
+  </a>
+  <a type="button" [routerLink]="['/contactUs']">
+    Contact Us
+  </a>
+  <a type="button" [routerLink]="['/dashboard']">
+    Home <i class="fas fa-home"></i>
+  </a>
+  <a type="button" *ngIf="user" [routerLink]="['/profile/', user.id]">
+    Profile <i class="fas fa-user"></i>
+  </a>
+  <a type="button" (click)="login()" *ngIf="!user">
+    login<i class="fas fa-user"></i>
+  </a>
+</div><br>
+
+<router-outlet></router-outlet>
